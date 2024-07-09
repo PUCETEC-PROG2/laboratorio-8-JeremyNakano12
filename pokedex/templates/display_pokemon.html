@@ -7,10 +7,12 @@
     <body>
         <div class="container">
             <div class="bg-primary text-white p-4 text-center">
-                <h1 style="font-size: 2.7em;">My Pokedex</h1>
+                <a href="/" style= "text-decoration: none; color: inherit;">
+                    <h1 style="font-size: 2.7em;">My Pokedex</h1>
+                </a>
             </div>
             <p style="font-size: 1.7em;" class= "text-center">You have chosen: <strong>{{ pokemon | capfirst }}</strong></p>
-            <h3>Caracteristicas:</h3>
+            <h3>Features:</h3>
             <ul class="list-group">
                 <li class="list-group-item"><strong>Type:</strong> {{ pokemon.type }}</li>
                 <li class="list-group-item"><strong>Weight:</strong> {{ pokemon.weight }}kg</li>

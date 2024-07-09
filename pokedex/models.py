@@ -15,7 +15,7 @@ class Trainer (models.Model):
     name = models.CharField(max_length=30, null=False)
     age = models.IntegerField(null=False)
     level = models.IntegerField(null=False)
-    region = models.CharField(max_length=30, null=True)
+    region = models.CharField(max_length=30, null=False)
     
     def __str__(self) -> str:
         return self.name
