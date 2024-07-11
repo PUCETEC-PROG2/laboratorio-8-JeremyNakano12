@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <link rel="icon" href="{% static 'pokeball.svg' %}">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="bg-primary text-white p-3 text-center">
+            <a href="/" style= "text-decoration: none; color: inherit;">
+                <img src="{% static 'pokedex.png' %}" width="200em">
+            </a>
+        </div>
+    </div>
+    {% block content %}{% endblock content %}
+</body>
+</html>

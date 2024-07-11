@@ -3,9 +3,8 @@ from django.template import loader
 from .models import Pokemon, Trainer
 
 def index(request):
-    with open('pokedex/templates/index.html', 'r') as index:
-        indexhtml = index.read()
-    return HttpResponse(indexhtml)
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
 
 
 def pokemon(request, pokemon_id):
