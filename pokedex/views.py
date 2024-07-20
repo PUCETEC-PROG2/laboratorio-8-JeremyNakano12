@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import redirect, render
+from pokedex.forms import PokemonForm
 from .models import Pokemon, Trainer
 
 def index(request):
@@ -32,3 +34,15 @@ def list_trainer(request):
     trainers = Trainer.objects.order_by('region')
     template = loader.get_template('list_trainer.html')
     return HttpResponse(template.render({'trainers': trainers}, request))
+
+def add_pokemon(request):
+    if request.method == 'POST':
+        form = PokemonForm(request.POST, request.FILES) 
+        if form.is_valid():
+            form.save()
+            return redirect('pokedex:list_pokemon')
+    else:
+        form = PokemonForm()
+        
+    return render(request, 'add_pokemon.html', {'form':form})
+    

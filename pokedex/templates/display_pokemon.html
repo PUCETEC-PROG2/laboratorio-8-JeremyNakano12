@@ -3,7 +3,7 @@
 {% block title %}{{trainer}}{% endblock title %}
 {% block content %}
     <div class="container">
-        <p style="font-size: 1.7em; margin-top: 1em; margin-bottom: 1em;" class= "text-center">You have chosen: <strong>{{ pokemon | capfirst }}</strong></p>
+        <p style="font-size: 1.7em; margin-top: 1em; margin-bottom: 1em;" class= "text-center"><strong>{{ pokemon | capfirst }}</strong> details</p>
         <h3>Features:</h3>
         <ul class="list-group">
             <li class="list-group-item"><strong><img src="{% static 'pokeball.svg' %}" alt="Pokeball" style="width:24px; height:24px; margin-right:10px;">Type:</strong> {{ pokemon.type }}</li>
@@ -13,7 +13,7 @@
         <div class="d-flex justify-content-center">
             <a href="/pokemon">
                 <button style="margin-top: 3em;" class="btn btn-outline-primary btn-lg btn-block">
-                    <h6>Regresar</h6>
+                    <h6>Return</h6>
                 </button>
             </a>
         </div>
