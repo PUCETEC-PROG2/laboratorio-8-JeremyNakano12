@@ -10,4 +10,5 @@ urlpatterns = [
     path("pokemon/", views.list_pokemon, name="list_pokemon"),
     path("trainer/", views.list_trainer, name="list_trainer"),
     path("add_pokemon/", views.add_pokemon, name="add_pokemon"),
+    path("login/", views.CustomLoginView.as_view(), name="login")
 ]
