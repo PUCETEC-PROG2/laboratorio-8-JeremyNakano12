@@ -20,7 +20,7 @@ class Pokemon (models.Model):
         ('G', 'Grass'),
         ('R', 'Rock'),
         ('I', 'Ice'),
-        ('G', 'Ground')
+        ('GR', 'Ground')
     }
     type = models.CharField(max_length=15, choices=POKEMON_TYPES, null=False)
     weight = models.DecimalField(null=False, default=1, max_digits=4, decimal_places=2)

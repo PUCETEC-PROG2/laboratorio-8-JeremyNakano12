@@ -4,7 +4,7 @@
 {% block content %}
         <div class="container">
             <h2 style="margin-top: 1em; margin-bottom: 1em;" class="text-center">Pokemons</h2>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex">
                 <a href="{%url "pokedex:add_pokemon" %}">
                     <button style=" margin-bottom: 2em;" class="btn btn-outline-primary btn-lg btn-block">
                         <h6>Add pokemon</h6>
@@ -19,7 +19,9 @@
                                 <h5 class="card-title"><strong>{{ pokemon }} </strong></h5>
                                 <p class="card-text"><strong>Type:</strong> {{ pokemon.get_type_display }}</p>
                                 <p class="card-text"><strong>Trainer:</strong> {{ pokemon.trainer }}</p>
-                                <a href="{{pokemon.id}}" class= "btn btn-primary btn-lg btn-block">Details</a>
+                                <a href="{{pokemon.id}}" class= "btn btn-primary btn-lg btn-block"><i class="fa-solid fa-eye"></i></a>
+                                <a href="edit/{{pokemon.id}}" class= "btn btn-primary btn-lg btn-block"><i class="fa-solid fa-pencil"></i></a>
+                                <a href="delete/{{pokemon.id}}" class= "btn btn-danger btn-lg btn-block"><i class="fa-solid fa-trash"></i></a>
                             </div>
                         </div>
                     {% endfor %}
