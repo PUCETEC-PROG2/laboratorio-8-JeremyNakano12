@@ -5,10 +5,15 @@ from pokedex.forms import PokemonForm
 from .models import Pokemon, Trainer
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def index(request):
     template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+    context = {
+        'user': request.user,
+        'logged_in': request.user.is_authenticated
+    }
+    return render(request, 'index.html', context)
 
 
 def pokemon(request, pokemon_id):
@@ -30,7 +35,7 @@ def trainer(request, trainer_id):
 def list_pokemon(request):
     pokemons = Pokemon.objects.order_by('type')
     template = loader.get_template('list_pokemon.html')
-    return HttpResponse(template.render({'poklogin_requiredemons': pokemons}, request))
+    return HttpResponse(template.render({'pokemons': pokemons}, request))
 
 def list_trainer(request):
     trainers = Trainer.objects.order_by('region')
@@ -39,15 +44,13 @@ def list_trainer(request):
 
 @login_required
 def add_pokemon(request):
-    if request.method == 'POST':
-        form = PokemonForm(request.POST, request.FILES) 
+    if request.method =='POST':
+        form = PokemonForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('pokedex:list_pokemon')
     else:
         form = PokemonForm()
-        
     return render(request, 'add_pokemon.html', {'form':form})
-    
 class CustomLoginView(LoginView):
     template_name = 'login.html'
