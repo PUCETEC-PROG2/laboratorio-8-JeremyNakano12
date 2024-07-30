@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'lab8.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pokedex_Jeremy',
-        'USER': 'postgres',
-        'PASSWORD': 'pucetec',
+        'NAME': 'pokedex_Nakano',
+        'USER': 'jeremynakano',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '5432',
     }

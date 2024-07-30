@@ -5,7 +5,16 @@ class Trainer (models.Model):
     last_name = models.CharField(max_length=30, null=False)
     birth_date = models.DateField(null=False)
     level = models.IntegerField(null=False, default=1)
-    region = models.CharField(max_length=30, null=False)
+    POKEMON_TYPES= {
+        ('K', 'Kanto'),
+        ('H', 'Hoenn'),
+        ('S', 'Sinnoh'),
+        ('T', 'Teselia'),
+        ('KA', 'Kalos'),
+        ('A', 'Alola')
+    }
+    region = models.CharField(max_length=30, choices=POKEMON_TYPES, null=False)
+    picture = models.ImageField(upload_to='trainer_images')
     
     def __str__(self) -> str:
         return f'{self.first_name} {self.last_name}'

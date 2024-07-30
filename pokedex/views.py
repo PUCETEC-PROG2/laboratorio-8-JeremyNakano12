@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404, redirect, render
-from pokedex.forms import PokemonForm
+from pokedex.forms import PokemonForm, TrainerForm
 from .models import Pokemon, Trainer
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
@@ -26,7 +26,7 @@ def pokemon(request, pokemon_id):
     return HttpResponse(template.render(context, request))
 
 def trainer(request, trainer_id):
-    trainer = get_object_or_404(Pokemon, pk = trainer_id)
+    trainer = get_object_or_404(Trainer, pk = trainer_id)
     template = loader.get_template('display_trainer.html')
     context = {
         'trainer': trainer
@@ -54,6 +54,17 @@ def add_pokemon(request):
         form = PokemonForm()
     return render(request, 'pokemon_form.html', {'form':form})
 
+@login_required
+def add_trainer(request):
+    if request.method =='POST':
+        form = TrainerForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('pokedex:list_trainer')
+    else:
+        form = TrainerForm()
+    return render(request, 'trainer_form.html', {'form':form})
+
 class CustomLoginView(LoginView):
     template_name = 'login.html'
 
@@ -70,7 +81,25 @@ def edit_pokemon(request, pokemon_id):
     return render(request, 'pokemon_form.html', {'form':form})
 
 @login_required
+def edit_trainer(request, trainer_id):
+    trainer = get_object_or_404(Trainer, pk = trainer_id) 
+    if request.method =='POST':
+        form = TrainerForm(request.POST, request.FILES, instance=trainer)
+        if form.is_valid():
+            form.save()
+            return redirect('pokedex:list_trainer')
+    else:
+        form = TrainerForm(instance=trainer)
+    return render(request, 'trainer_form.html', {'form':form})
+
+@login_required
 def delete_pokemon(request, pokemon_id):
     pokemon = get_object_or_404(Pokemon, pk = pokemon_id)
     pokemon.delete()
     return redirect("pokedex:list_pokemon")
+
+@login_required
+def delete_trainer(request, trainer_id):
+    trainer = get_object_or_404(Trainer, pk = trainer_id)
+    trainer.delete()
+    return redirect("pokedex:list_trainer")

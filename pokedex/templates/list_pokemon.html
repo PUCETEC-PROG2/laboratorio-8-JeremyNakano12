@@ -16,15 +16,15 @@
                 <div class="card-group">
                     {% for pokemon in pokemons %}
                         <div class="card">
-                            <img src="{{ pokemon.picture.url }}" alt="">
+                            <img src="{{ pokemon.picture.url }}" alt="{{pokemon}}">
                             <div class="card-body">
                                 <h5 class="card-title"><strong>{{ pokemon }} </strong></h5>
                                 <p class="card-text"><strong>Type:</strong> {{ pokemon.get_type_display }}</p>
                                 <p class="card-text"><strong>Trainer:</strong> {{ pokemon.trainer }}</p>
-                                <a href="{{pokemon.id}}" class= "btn btn-primary btn-lg btn-block"><i class="fa-solid fa-eye"></i></a>
+                                <a href="{{pokemon.id}}" class= "btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                                 {% if user.is_authenticated %} 
-                                    <a href="edit/{{pokemon.id}}" class= "btn btn-primary btn-lg btn-block"><i class="fa-solid fa-pencil"></i></a>
-                                    <a href="delete/{{pokemon.id}}" class= "btn btn-danger btn-lg btn-block"><i class="fa-solid fa-trash"></i></a>
+                                    <a href="edit/{{pokemon.id}}" class= "btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                                    <a href="delete/{{pokemon.id}}" onclick="confirmAction(event)" class= "btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                                 {% endif %}
                             </div>
                         </div>
