@@ -16,7 +16,7 @@
             <div class="card-group">
                 {% for trainer in trainers %}
                     <div class="card">
-                        <img src="{{ trainer.picture.url }}" alt="">
+                        <img src="{{ trainer.picture.url }}" alt="{{ trainer }}" style="height:350px; object-fit: scale-down;">
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{ trainer }} </strong></h5>
                             <p class="card-text"><strong>Region:</strong> {{ trainer.get_region_display }}</p>
@@ -24,7 +24,7 @@
                             <a href="{{trainer.id}}" class= "btn btn-primary btn-lg btn-block"><i class="fa-solid fa-eye"></i></a>
                             {% if user.is_authenticated %} 
                                 <a href="edit/{{trainer.id}}" class= "btn btn-primary btn-lg btn-block"><i class="fa-solid fa-pencil"></i></a>
-                                <a href="delete/{{trainer.id}}" class= "btn btn-danger btn-lg btn-block"><i class="fa-solid fa-trash"></i></a>
+                                <a href="delete/{{trainer.id}}" class= "btn btn-danger btn-lg btn-block" onclick="confirmScript(event, 'delete {{ trainer }}? This action is not reversible.')"><i class="fa-solid fa-trash"></i></a>
                             {% endif %}
                         </div>
                     </div>

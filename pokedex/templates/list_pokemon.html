@@ -6,7 +6,7 @@
             <h2 style="margin-top: 1em; margin-bottom: 1em;" class="text-center">Pokemons</h2>
             {% if user.is_authenticated %}
                 <div class="d-flex">
-                    <a href="{%url "pokedex:add_pokemon" %}">
+                    <a href="{% url "pokedex:add_pokemon" %}">
                         <button style=" margin-bottom: 2em;" class="btn btn-outline-primary btn-lg btn-block">
                             <h6>Add pokemon</h6>
                         </button>
@@ -16,7 +16,7 @@
                 <div class="card-group">
                     {% for pokemon in pokemons %}
                         <div class="card">
-                            <img src="{{ pokemon.picture.url }}" alt="{{pokemon}}">
+                            <img src="{{ pokemon.picture.url }}" alt="{{pokemon}}" style="height:210px; object-fit: scale-down;">
                             <div class="card-body">
                                 <h5 class="card-title"><strong>{{ pokemon }} </strong></h5>
                                 <p class="card-text"><strong>Type:</strong> {{ pokemon.get_type_display }}</p>
@@ -24,7 +24,7 @@
                                 <a href="{{pokemon.id}}" class= "btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                                 {% if user.is_authenticated %} 
                                     <a href="edit/{{pokemon.id}}" class= "btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
-                                    <a href="delete/{{pokemon.id}}" onclick="confirmAction(event)" class= "btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                    <a href="delete/{{pokemon.id}}" onclick="confirmScript(event, 'delete {{ pokemon }}? This action is not reversible.')" class= "btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                                 {% endif %}
                             </div>
                         </div>

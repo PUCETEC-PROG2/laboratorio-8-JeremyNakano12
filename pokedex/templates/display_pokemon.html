@@ -11,8 +11,11 @@
             <li class="list-group-item"><strong><img src="{% static 'pokeball.svg' %}" alt="Pokeball" style="width:24px; height:24px; margin-right:10px;">Height:</strong> {{ pokemon.height }}m</li> 
         </ul>
         <div class="d-flex justify-content-center">
+            <img src="{{ pokemon.picture.url }}" alt="{{pokemon}}" style="width:300; height:300px; margin-top: 1em;">
+        </div>
+        <div class="d-flex justify-content-center">
             <a href="/pokemon">
-                <button style="margin-top: 3em;" class="btn btn-outline-primary btn-lg btn-block">
+                <button style="margin-top: 3em; margin-bottom: 3em;" class="btn btn-outline-primary btn-lg btn-block">
                     <h6>Return</h6>
                 </button>
             </a>
